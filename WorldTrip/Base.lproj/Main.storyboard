@@ -17,6 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="DfB-dG-tWC">
+                            <rect key="frame" x="0.0" y="99.5" width="414" height="63"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="PBt-EU-2Pn" imageView="JtO-N7-oFL" style="IBUITableViewCellStyleDefault" id="CXR-6M-hTO">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -47,6 +52,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="World Trip" largeTitleDisplayMode="always" id="y5l-d1-UOo">
                         <barButtonItem key="backBarButtonItem" title=" " id="OWl-A1-Omc"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="SHR-YT-MNN">
+                            <connections>
+                                <segue destination="wBU-z9-cKL" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="gDs-xq-Pj5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="cP1-fm-Hd2" kind="show" identifier="showPlace" id="4LO-FH-gAx"/>
@@ -54,12 +64,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unc-nF-lk6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1875" y="151"/>
+            <point key="canvasLocation" x="1873.913043478261" y="150.66964285714286"/>
         </scene>
         <!--Nome do lugar-->
         <scene sceneID="XTN-uO-0ox">
             <objects>
-                <viewController id="cP1-fm-Hd2" sceneMemberID="viewController">
+                <viewController id="cP1-fm-Hd2" customClass="MapViewController" customModule="WorldTrip" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Jy-v3-fN0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,6 +118,9 @@
                                                 <state key="normal" title="Traçar rota">
                                                     <color key="titleColor" name="main"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="plotRoute:" destination="cP1-fm-Hd2" eventType="touchUpInside" id="mzh-dD-y72"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -135,8 +148,18 @@
                     </view>
                     <navigationItem key="navigationItem" title="Nome do lugar" id="nhi-Iv-gyU">
                         <barButtonItem key="backBarButtonItem" title=" " id="9yS-iG-9rO"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="AmR-on-B1C"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="AmR-on-B1C">
+                            <connections>
+                                <action selector="showSearchBar:" destination="cP1-fm-Hd2" id="J2b-VV-oUL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addressName" destination="ybY-hz-PpJ" id="Y1X-GG-Jjb"/>
+                        <outlet property="mapView" destination="3lF-gA-GhP" id="vUB-7k-KRP"/>
+                        <outlet property="placeName" destination="5TR-CH-yy9" id="C2p-v8-GwK"/>
+                        <outlet property="searchBar" destination="w5c-vo-G5Z" id="eX5-Es-YSf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NNc-dk-6yl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,10 +215,10 @@
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lSl-7O-fhE">
                                         <rect key="frame" x="10" y="234" width="354" height="494"/>
                                     </mapView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDJ-g1-BLo">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDJ-g1-BLo">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="738"/>
                                         <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fMQ-h0-C5U">
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fMQ-h0-C5U">
                                                 <rect key="frame" x="168.5" y="350.5" width="37" height="37"/>
                                                 <color key="color" name="main"/>
                                             </activityIndicatorView>
@@ -237,7 +260,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mOQ-w7-42C"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.19505977630615234" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="F6B-he-TA4" firstAttribute="leading" secondItem="mOQ-w7-42C" secondAttribute="leading" constant="20" id="BMb-Gu-F8k"/>
                             <constraint firstItem="mOQ-w7-42C" firstAttribute="trailing" secondItem="F6B-he-TA4" secondAttribute="trailing" constant="20" id="LKn-7g-bIX"/>
@@ -281,7 +304,7 @@
         <image name="cancel" width="30" height="30"/>
         <image name="cellIcon" width="40" height="40"/>
         <namedColor name="main">
-            <color red="0.082420565190000003" green="0.71072816849999998" blue="0.89022284750000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.082000002264976501" green="0.71100002527236938" blue="0.88999998569488525" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
