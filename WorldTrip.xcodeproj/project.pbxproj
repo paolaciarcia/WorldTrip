@@ -16,6 +16,7 @@
 		60982F02265BF6DE002DD001 /* PlacesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982F01265BF6DE002DD001 /* PlacesListTableViewController.swift */; };
 		60982F0A265C187D002DD001 /* PlaceFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982F09265C187D002DD001 /* PlaceFinderViewController.swift */; };
 		60982F11265C2679002DD001 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982F10265C2679002DD001 /* MapViewController.swift */; };
+		60982F15265C3246002DD001 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982F14265C3246002DD001 /* Place.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		60982F01265BF6DE002DD001 /* PlacesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListTableViewController.swift; sourceTree = "<group>"; };
 		60982F09265C187D002DD001 /* PlaceFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderViewController.swift; sourceTree = "<group>"; };
 		60982F10265C2679002DD001 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		60982F14265C3246002DD001 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				60982EEE265BE9A4002DD001 /* SceneDelegate.swift */,
 				60982F0C265C188E002DD001 /* Controllers */,
 				60982EF0265BE9A4002DD001 /* ViewController.swift */,
+				60982F17265C3255002DD001 /* Models */,
 				60982EF2265BE9A4002DD001 /* Main.storyboard */,
 				60982EF5265BE9A7002DD001 /* Assets.xcassets */,
 				60982EF7265BE9A7002DD001 /* LaunchScreen.storyboard */,
@@ -82,6 +85,14 @@
 				60982F10265C2679002DD001 /* MapViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		60982F17265C3255002DD001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				60982F14265C3246002DD001 /* Place.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +170,7 @@
 				60982F02265BF6DE002DD001 /* PlacesListTableViewController.swift in Sources */,
 				60982EED265BE9A4002DD001 /* AppDelegate.swift in Sources */,
 				60982F0A265C187D002DD001 /* PlaceFinderViewController.swift in Sources */,
+				60982F15265C3246002DD001 /* Place.swift in Sources */,
 				60982EEF265BE9A4002DD001 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
