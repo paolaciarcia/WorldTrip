@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="PBt-EU-2Pn" imageView="JtO-N7-oFL" style="IBUITableViewCellStyleDefault" id="CXR-6M-hTO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="PBt-EU-2Pn" imageView="JtO-N7-oFL" style="IBUITableViewCellStyleDefault" id="CXR-6M-hTO">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CXR-6M-hTO" id="dQ0-d2-7jl">
@@ -45,26 +45,102 @@
                             <outlet property="delegate" destination="PFd-sL-xNF" id="oYF-S0-JmW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="World Trip" largeTitleDisplayMode="always" id="y5l-d1-UOo"/>
+                    <navigationItem key="navigationItem" title="World Trip" largeTitleDisplayMode="always" id="y5l-d1-UOo">
+                        <barButtonItem key="backBarButtonItem" title=" " id="OWl-A1-Omc"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="cP1-fm-Hd2" kind="show" identifier="showPlace" id="4LO-FH-gAx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unc-nF-lk6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1875" y="151"/>
         </scene>
-        <!--View Controller-->
+        <!--Nome do lugar-->
         <scene sceneID="XTN-uO-0ox">
             <objects>
                 <viewController id="cP1-fm-Hd2" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Jy-v3-fN0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hfi-8M-AUy">
+                                <rect key="frame" x="10" y="150" width="394" height="702"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" placeholder="O que você deseja buscar?" translatesAutoresizingMaskIntoConstraints="NO" id="w5c-vo-G5Z">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="gBz-Ny-AGD"/>
+                                        </constraints>
+                                        <color key="barTintColor" red="1" green="1" blue="1" alpha="0.90029869080000002" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
+                                    </searchBar>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3lF-gA-GhP">
+                                        <rect key="frame" x="0.0" y="54" width="394" height="478"/>
+                                    </mapView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xf-zc-WjD">
+                                        <rect key="frame" x="0.0" y="542" width="394" height="160"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="phh-ws-pZL">
+                                                <rect key="frame" x="12" y="5" width="370" height="54"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TR-CH-yy9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="370" height="30.5"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endereço" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ybY-hz-PpJ">
+                                                        <rect key="frame" x="0.0" y="30.5" width="370" height="23.5"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2a-8E-ZU4">
+                                                <rect key="frame" x="12" y="118" width="370" height="36"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                <state key="normal" title="Traçar rota">
+                                                    <color key="titleColor" name="main"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <constraints>
+                                            <constraint firstItem="phh-ws-pZL" firstAttribute="leading" secondItem="1xf-zc-WjD" secondAttribute="leading" constant="12" id="0yK-dw-rTm"/>
+                                            <constraint firstAttribute="trailing" secondItem="phh-ws-pZL" secondAttribute="trailing" constant="12" id="4G6-Vb-X0o"/>
+                                            <constraint firstAttribute="height" constant="160" id="CaY-ab-a21"/>
+                                            <constraint firstItem="phh-ws-pZL" firstAttribute="top" secondItem="1xf-zc-WjD" secondAttribute="top" constant="5" id="LT0-ED-CiK"/>
+                                            <constraint firstAttribute="bottom" secondItem="q2a-8E-ZU4" secondAttribute="bottom" constant="6" id="lGR-cd-oIK"/>
+                                            <constraint firstItem="q2a-8E-ZU4" firstAttribute="leading" secondItem="1xf-zc-WjD" secondAttribute="leading" constant="12" id="xJx-gm-Aee"/>
+                                            <constraint firstAttribute="trailing" secondItem="q2a-8E-ZU4" secondAttribute="trailing" constant="12" id="xLY-Du-oIL"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="zI1-lo-ELf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Hfi-8M-AUy" firstAttribute="trailing" secondItem="zI1-lo-ELf" secondAttribute="trailing" constant="-10" id="AdW-ip-3b3"/>
+                            <constraint firstItem="Hfi-8M-AUy" firstAttribute="top" secondItem="zI1-lo-ELf" secondAttribute="top" constant="10" id="R8E-8b-Wt1"/>
+                            <constraint firstItem="zI1-lo-ELf" firstAttribute="bottom" secondItem="Hfi-8M-AUy" secondAttribute="bottom" constant="10" id="Y2Z-39-1CY"/>
+                            <constraint firstItem="Hfi-8M-AUy" firstAttribute="leading" secondItem="zI1-lo-ELf" secondAttribute="leading" constant="10" id="wwa-Th-Ysz"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Nome do lugar" id="nhi-Iv-gyU">
+                        <barButtonItem key="backBarButtonItem" title=" " id="9yS-iG-9rO"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="AmR-on-B1C"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NNc-dk-6yl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2833" y="648"/>
+            <point key="canvasLocation" x="2830.434782608696" y="646.875"/>
         </scene>
         <!--Place Finder View Controller-->
         <scene sceneID="njY-Zy-DpH">
@@ -187,8 +263,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UQu-Zq-CCs" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MDk-b8-mxg">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="MDk-b8-mxg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -209,6 +285,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
