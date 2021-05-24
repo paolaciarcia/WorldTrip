@@ -13,6 +13,7 @@
 		60982EF4265BE9A4002DD001 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60982EF2265BE9A4002DD001 /* Main.storyboard */; };
 		60982EF6265BE9A7002DD001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60982EF5265BE9A7002DD001 /* Assets.xcassets */; };
 		60982EF9265BE9A7002DD001 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60982EF7265BE9A7002DD001 /* LaunchScreen.storyboard */; };
+		60982F02265BF6DE002DD001 /* PlacesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982F01265BF6DE002DD001 /* PlacesListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		60982EF5265BE9A7002DD001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60982EF8265BE9A7002DD001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60982EFA265BE9A7002DD001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60982F01265BF6DE002DD001 /* PlacesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				60982EEC265BE9A4002DD001 /* AppDelegate.swift */,
 				60982EEE265BE9A4002DD001 /* SceneDelegate.swift */,
+				60982F01265BF6DE002DD001 /* PlacesListTableViewController.swift */,
 				60982EF0265BE9A4002DD001 /* ViewController.swift */,
 				60982EF2265BE9A4002DD001 /* Main.storyboard */,
 				60982EF5265BE9A7002DD001 /* Assets.xcassets */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60982EF1265BE9A4002DD001 /* ViewController.swift in Sources */,
+				60982F02265BF6DE002DD001 /* PlacesListTableViewController.swift in Sources */,
 				60982EED265BE9A4002DD001 /* AppDelegate.swift in Sources */,
 				60982EEF265BE9A4002DD001 /* SceneDelegate.swift in Sources */,
 			);
