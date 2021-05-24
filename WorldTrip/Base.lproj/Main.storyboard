@@ -66,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="2833" y="648"/>
         </scene>
-        <!--View Controller-->
+        <!--Place Finder View Controller-->
         <scene sceneID="njY-Zy-DpH">
             <objects>
-                <viewController id="wBU-z9-cKL" sceneMemberID="viewController">
+                <viewController id="wBU-z9-cKL" customClass="PlaceFinderViewController" customModule="WorldTrip" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zCc-h8-Jbu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,6 +101,9 @@
                                                 <state key="normal" title="Escolher">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="chooseButton:" destination="wBU-z9-cKL" eventType="touchUpInside" id="MgJ-zu-KlT"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -116,7 +119,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDJ-g1-BLo">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="738"/>
                                         <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fMQ-h0-C5U">
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fMQ-h0-C5U">
                                                 <rect key="frame" x="168.5" y="350.5" width="37" height="37"/>
                                                 <color key="color" name="main"/>
                                             </activityIndicatorView>
@@ -149,6 +152,13 @@
                                     <constraint firstAttribute="trailing" secondItem="gDJ-g1-BLo" secondAttribute="trailing" id="zoZ-gC-QM6"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZC-hY-5iR">
+                                <rect key="frame" x="374" y="79" width="30" height="30"/>
+                                <state key="normal" image="cancel"/>
+                                <connections>
+                                    <action selector="closeButton:" destination="wBU-z9-cKL" eventType="touchUpInside" id="7i4-Jo-UnY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mOQ-w7-42C"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.19505977630615234" colorSpace="custom" customColorSpace="displayP3"/>
@@ -157,8 +167,16 @@
                             <constraint firstItem="mOQ-w7-42C" firstAttribute="trailing" secondItem="F6B-he-TA4" secondAttribute="trailing" constant="20" id="LKn-7g-bIX"/>
                             <constraint firstItem="F6B-he-TA4" firstAttribute="top" secondItem="mOQ-w7-42C" secondAttribute="top" constant="50" id="Z6f-er-Xlw"/>
                             <constraint firstItem="mOQ-w7-42C" firstAttribute="bottom" secondItem="F6B-he-TA4" secondAttribute="bottom" constant="30" id="n8y-LN-fkL"/>
+                            <constraint firstItem="mOQ-w7-42C" firstAttribute="trailing" secondItem="UZC-hY-5iR" secondAttribute="trailing" constant="10" id="tt5-bJ-2mb"/>
+                            <constraint firstItem="F6B-he-TA4" firstAttribute="top" secondItem="UZC-hY-5iR" secondAttribute="bottom" constant="-15" id="xdp-4h-MSq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loading" destination="fMQ-h0-C5U" id="cxL-yc-ram"/>
+                        <outlet property="mapView" destination="lSl-7O-fhE" id="rEf-x2-Dco"/>
+                        <outlet property="searchTextField" destination="IYn-WN-8P6" id="0c6-VP-UFi"/>
+                        <outlet property="viewLoading" destination="gDJ-g1-BLo" id="5Lm-iW-d4k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wo-vI-9CI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -184,6 +202,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cancel" width="30" height="30"/>
         <image name="cellIcon" width="40" height="40"/>
         <namedColor name="main">
             <color red="0.082420565190000003" green="0.71072816849999998" blue="0.89022284750000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
