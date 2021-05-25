@@ -19,8 +19,34 @@ class PlaceFinderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        //encontrar o local interagindo com o mapa
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(getLocation(_:)))
+        gesture.minimumPressDuration = 2.0
+        mapView.addGestureRecognizer(gesture)
+    }
+    
+    @objc func getLocation(_ gesture: UILongPressGestureRecognizer) {
+        //configurar o estado do GestureRecognizer
+        if gesture.state == .began {
+            load(show: true)
+            //converter em coordenada o ponto tocado no mapview
+            let point = gesture.location(in: mapView)
+            let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+            //transformar em localizacao a partir das coordenadas
+            let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            
+            CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+                self.load(show: false)
+                
+                if error == nil {
+                    if !self.savePlace(with: placemarks?.first) {
+                        self.showMessage(type: .error("Não foi encontrado nenhum local com esse nome"))
+                    }
+                } else {
+                    self.showMessage(type: .error("Erro desconhecido"))
+                }
+            })
+        }
     }
 
     @IBAction func chooseButton(_ sender: UIButton) {
@@ -31,7 +57,7 @@ class PlaceFinderViewController: UIViewController {
             load(show: true)
             let cLGeocoder = CLGeocoder()
             
-            cLGeocoder.geocodeAddressString(place) { (placemarks, error) in
+            cLGeocoder.geocodeAddressString(place, completionHandler: { (placemarks, error) in
                 self.load(show: false)
                 
                 if error == nil {
@@ -41,7 +67,7 @@ class PlaceFinderViewController: UIViewController {
                 } else {
                     self.showMessage(type: .error("Erro desconhecido"))
                 }
-            }
+            })
         } 
     }
     
