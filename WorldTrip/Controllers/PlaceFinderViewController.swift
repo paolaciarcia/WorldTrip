@@ -8,14 +8,23 @@
 import UIKit
 import MapKit
 
+//2-salvar dados no device(esta delegando para essa classe a tarefa de salvar os locais)
+
+//MARK: - protocol PlaceFinderDelegate
+protocol PlaceFinderDelegate: class {
+    func addPlace(_ place: Place)
+}
+
+//MARK: - PlaceFinderViewController
 class PlaceFinderViewController: UIViewController {
-    
-    var place: Place!
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var viewLoading: UIView!
+    
+    var place: Place!
+    weak var delegate: PlaceFinderDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +57,8 @@ class PlaceFinderViewController: UIViewController {
             })
         }
     }
+    
+    
 
     @IBAction func chooseButton(_ sender: UIButton) {
         searchTextField.resignFirstResponder()
@@ -95,13 +106,13 @@ class PlaceFinderViewController: UIViewController {
         place = Place(name: name, lat: coordinate.latitude, long: coordinate.longitude, address: address)
         
         //região a ser mostrada no mapa
-        let region = MKCoordinateRegion(center: coordinate , latitudinalMeters: 3500, longitudinalMeters: 3500)
-        
-        self.showMessage(type: .confirmation(place.name))
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3500, longitudinalMeters: 3500)
         
         //mostrar no mapa
         mapView.setRegion(region, animated: true)
-
+        
+        self.showMessage(type: .confirmation(place.name))
+        
         return true
     }
     
@@ -118,7 +129,7 @@ class PlaceFinderViewController: UIViewController {
             hasConfirmation = true
         case .error(let errorMessage):
             title = "Erro"
-            message = "\(errorMessage)"
+            message = errorMessage
         }
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -127,9 +138,12 @@ class PlaceFinderViewController: UIViewController {
         alert.addAction(cancelAction)
 
         if hasConfirmation {
-            let confirmAction = UIAlertAction(title: "OK", style: .default, handler: { (alertAction) in
-                print("ok")
-            })
+            let confirmAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
+                
+                //3-salvar dados no device(a paritr dessa acao será salvo)
+                self.delegate?.addPlace(self.place)
+                self.dismiss(animated: true, completion: nil)
+            }
             alert.addAction(confirmAction)
         }
         

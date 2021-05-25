@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 
-struct Place {
+struct Place: Codable {
     let name: String
     let lat: CLLocationDegrees
     let long: CLLocationDegrees
@@ -26,7 +26,7 @@ struct Place {
             address += street
         }
         if let number = placemark.subThoroughfare {
-            address += " \(number)"
+            address += "\(number)"
         }
         if let subLocality = placemark.subLocality {
             address += ", \(subLocality)" //Bairro
@@ -38,11 +38,18 @@ struct Place {
             address += " - \(state)"
         }
         if let postalCode = placemark.postalCode {
-            address += "\nCEP:\(postalCode)"
+            address += "\nCEP: \(postalCode)"
         }
         if let county = placemark.country {
             address += "\n\(county)"
         }
         return address
+    }
+}
+
+//5-salvar dados no device(compara se duas classes são iguais)
+extension Place: Equatable {
+    static func ==(lhs: Place, rhs: Place) -> Bool {
+        return lhs.lat == rhs.lat && lhs.long == rhs.long
     }
 }

@@ -12,33 +12,33 @@
         <!--World Trip-->
         <scene sceneID="euh-c3-9wQ">
             <objects>
-                <tableViewController id="PFd-sL-xNF" sceneMemberID="viewController">
+                <tableViewController id="PFd-sL-xNF" customClass="PlacesListTableViewController" customModule="WorldTrip" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vER-yb-vKa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="DfB-dG-tWC">
-                            <rect key="frame" x="0.0" y="99.5" width="414" height="63"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="VYO-Xo-4cW">
+                            <rect key="frame" x="0.0" y="116" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="PBt-EU-2Pn" imageView="JtO-N7-oFL" style="IBUITableViewCellStyleDefault" id="CXR-6M-hTO">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="PBt-EU-2Pn" imageView="JtO-N7-oFL" rowHeight="60" style="IBUITableViewCellStyleDefault" id="CXR-6M-hTO">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CXR-6M-hTO" id="dQ0-d2-7jl">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PBt-EU-2Pn">
-                                            <rect key="frame" x="75" y="0.0" width="300" height="43.5"/>
+                                            <rect key="frame" x="75" y="0.0" width="300" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="cellIcon" id="JtO-N7-oFL">
-                                            <rect key="frame" x="20" y="1.5" width="40" height="40"/>
+                                            <rect key="frame" x="20" y="10" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -54,7 +54,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="OWl-A1-Omc"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="SHR-YT-MNN">
                             <connections>
-                                <segue destination="wBU-z9-cKL" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="gDs-xq-Pj5"/>
+                                <segue destination="wBU-z9-cKL" kind="presentation" identifier="finderSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="gDs-xq-Pj5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -88,6 +88,9 @@
                                             <string>Title</string>
                                             <string>Title</string>
                                         </scopeButtonTitles>
+                                        <connections>
+                                            <outlet property="delegate" destination="nhi-Iv-gyU" id="4Ad-IU-sXa"/>
+                                        </connections>
                                     </searchBar>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3lF-gA-GhP">
                                         <rect key="frame" x="0.0" y="54" width="394" height="478"/>
@@ -163,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NNc-dk-6yl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2830.434782608696" y="646.875"/>
+            <point key="canvasLocation" x="2764" y="500"/>
         </scene>
         <!--Place Finder View Controller-->
         <scene sceneID="njY-Zy-DpH">
@@ -280,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wo-vI-9CI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2830.434782608696" y="-39.508928571428569"/>
+            <point key="canvasLocation" x="2764" y="-163"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gKD-KS-1X9">
