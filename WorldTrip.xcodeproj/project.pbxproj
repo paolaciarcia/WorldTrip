@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6092E6FA265D375E008C957D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6092E6F9265D375E008C957D /* Constants.swift */; };
 		60982EED265BE9A4002DD001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982EEC265BE9A4002DD001 /* AppDelegate.swift */; };
 		60982EEF265BE9A4002DD001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982EEE265BE9A4002DD001 /* SceneDelegate.swift */; };
 		60982EF1265BE9A4002DD001 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982EF0265BE9A4002DD001 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6092E6F9265D375E008C957D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		60982EE9265BE9A4002DD001 /* WorldTrip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldTrip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60982EEC265BE9A4002DD001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60982EEE265BE9A4002DD001 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		60982F17265C3255002DD001 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6092E6F9265D375E008C957D /* Constants.swift */,
 				60982F14265C3246002DD001 /* Place.swift */,
 			);
 			path = Models;
@@ -172,6 +175,7 @@
 				60982F0A265C187D002DD001 /* PlaceFinderViewController.swift in Sources */,
 				60982F15265C3246002DD001 /* Place.swift in Sources */,
 				60982EEF265BE9A4002DD001 /* SceneDelegate.swift in Sources */,
+				6092E6FA265D375E008C957D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
