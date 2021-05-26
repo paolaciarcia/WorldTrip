@@ -92,7 +92,7 @@
                                             <outlet property="delegate" destination="nhi-Iv-gyU" id="4Ad-IU-sXa"/>
                                         </connections>
                                     </searchBar>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3lF-gA-GhP">
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3lF-gA-GhP">
                                         <rect key="frame" x="0.0" y="54" width="394" height="478"/>
                                     </mapView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xf-zc-WjD">
@@ -139,6 +139,10 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aiF-LX-CcW">
+                                <rect key="frame" x="188.5" y="424.5" width="37" height="37"/>
+                                <color key="color" name="main"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zI1-lo-ELf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -146,7 +150,9 @@
                             <constraint firstItem="Hfi-8M-AUy" firstAttribute="trailing" secondItem="zI1-lo-ELf" secondAttribute="trailing" constant="-10" id="AdW-ip-3b3"/>
                             <constraint firstItem="Hfi-8M-AUy" firstAttribute="top" secondItem="zI1-lo-ELf" secondAttribute="top" constant="10" id="R8E-8b-Wt1"/>
                             <constraint firstItem="zI1-lo-ELf" firstAttribute="bottom" secondItem="Hfi-8M-AUy" secondAttribute="bottom" constant="10" id="Y2Z-39-1CY"/>
+                            <constraint firstItem="aiF-LX-CcW" firstAttribute="centerY" secondItem="3lF-gA-GhP" secondAttribute="centerY" id="rDE-0C-Lbd"/>
                             <constraint firstItem="Hfi-8M-AUy" firstAttribute="leading" secondItem="zI1-lo-ELf" secondAttribute="leading" constant="10" id="wwa-Th-Ysz"/>
+                            <constraint firstItem="aiF-LX-CcW" firstAttribute="centerX" secondItem="3lF-gA-GhP" secondAttribute="centerX" id="xOq-jR-rlR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Nome do lugar" id="nhi-Iv-gyU">
@@ -159,6 +165,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressName" destination="ybY-hz-PpJ" id="Y1X-GG-Jjb"/>
+                        <outlet property="loading" destination="aiF-LX-CcW" id="X1f-d5-Xjw"/>
                         <outlet property="mapView" destination="3lF-gA-GhP" id="vUB-7k-KRP"/>
                         <outlet property="placeName" destination="5TR-CH-yy9" id="C2p-v8-GwK"/>
                         <outlet property="searchBar" destination="w5c-vo-G5Z" id="eX5-Es-YSf"/>
