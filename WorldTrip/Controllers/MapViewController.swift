@@ -12,7 +12,10 @@ class MapViewController: UIViewController {
     
     //todos os lugares a serem visualizados
     var allPlaces: [Place]!
+    
     var pointsOfInterest: [MKAnnotation] = []
+    lazy var locationManager = CLLocationManager()
+    var userLocationButton: MKUserTrackingButton!
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
@@ -30,12 +33,18 @@ class MapViewController: UIViewController {
         
         mapView.delegate = self
         searchBar.delegate = self
+        locationManager.delegate = self
         
         setupNavigationTitle()
         
         for place in allPlaces {
             addPlacesToMap(place)
         }
+        
+        configureLocationButton()
+        
+        showPlaces()
+        requestUserLocationAuth()
     }
     
     func setupNavigationTitle() {
@@ -45,6 +54,16 @@ class MapViewController: UIViewController {
             title = "Meus lugares"
         }
     }
+    
+    func configureLocationButton() {
+        userLocationButton = MKUserTrackingButton(mapView: mapView)
+        userLocationButton.backgroundColor = .white
+        userLocationButton.frame.origin.x = 10
+        userLocationButton.frame.origin.y = 10
+        userLocationButton.layer.cornerRadius = 5
+        userLocationButton.layer.borderWidth = 1
+        userLocationButton.layer.borderColor = UIColor(named: "main")?.cgColor
+    }
 
     @IBAction func plotRoute(_ sender: UIButton) {
     }
@@ -52,6 +71,63 @@ class MapViewController: UIViewController {
     @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
         searchBar.resignFirstResponder()
         searchBar.isHidden = !searchBar.isHidden
+    }
+    //validar a ativação de localização
+    func requestUserLocationAuth() {
+        if CLLocationManager.locationServicesEnabled() {
+            
+            switch locationManager.authorizationStatus {
+            case .authorizedAlways, .authorizedWhenInUse:
+                //mostrar botão de localização no mapa
+                mapView.addSubview(userLocationButton)
+                break
+            case .denied:
+                showMessage(type: .authorizationWarning)
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted:
+                break
+            default:
+                return
+            }
+            
+             
+ /*let title: String
+             let message: String
+             var hasConfirmation: Bool = false
+             
+             switch type {
+             case .confirmation(let name):
+                 title = "Local encontrado"
+                 message = "Deseja adicionar \(name) ?"
+                 hasConfirmation = true
+             case .error(let errorMessage):
+                 title = "Erro"
+                 message = errorMessage
+             }
+             
+             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+             let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+             
+             alert.addAction(cancelAction)
+
+             if hasConfirmation {
+                 let confirmAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
+                     
+                     //3-salvar dados no device(a paritr dessa acao será salvo)
+                     self.delegate?.addPlace(self.place)
+                     self.dismiss(animated: true, completion: nil)
+                 }
+                 alert.addAction(confirmAction)
+             }
+             
+             //mostrar o alerta na tela
+             present(alert, animated: true, completion: nil)
+         }*/
+        }
+    }
+    
+    func showMessage(type: MapMessageType.Alerts) {
     }
     
     //implementacao do MKAnnotation - "pinos" que são inseridos no mapa
@@ -74,6 +150,7 @@ class MapViewController: UIViewController {
 }
 
 //MARK: - MKMapViewDelegate
+
 extension MapViewController: MKMapViewDelegate {
     //método utilizado para modificar uma annotation view
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -103,6 +180,7 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 //MARK: - UISearchBarDelegate
+
 //pesquisa por pontos de interesse
 extension MapViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -141,5 +219,27 @@ extension MapViewController: UISearchBarDelegate {
             
             self.loading.stopAnimating()
         }
+    }
+}
+
+//MARK: - CLLocationManagerDelegate
+
+extension MapViewController: CLLocationManagerDelegate {
+    //muda o status da autorização. É possivel saber se o usuário autorizou ou não.
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            mapView.addSubview(userLocationButton)
+            locationManager.startUpdatingLocation()
+        default:
+            break
+        }
+    }
+    
+    //metodo chamado sempre que o usuário modificar sua localização
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations.last!)
     }
 }

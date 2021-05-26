@@ -19,6 +19,7 @@
 		60982F11265C2679002DD001 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982F10265C2679002DD001 /* MapViewController.swift */; };
 		60982F15265C3246002DD001 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60982F14265C3246002DD001 /* Place.swift */; };
 		60EB53CF265EAA8000C38D45 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB53CE265EAA8000C38D45 /* CustomAnnotation.swift */; };
+		60EB53D3265ED36600C38D45 /* MapMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB53D2265ED36600C38D45 /* MapMessageType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		60982F10265C2679002DD001 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		60982F14265C3246002DD001 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		60EB53CE265EAA8000C38D45 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		60EB53D2265ED36600C38D45 /* MapMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMessageType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				60982F01265BF6DE002DD001 /* PlacesListTableViewController.swift */,
 				60982F09265C187D002DD001 /* PlaceFinderViewController.swift */,
 				60982F10265C2679002DD001 /* MapViewController.swift */,
+				60EB53D2265ED36600C38D45 /* MapMessageType.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				60982F11265C2679002DD001 /* MapViewController.swift in Sources */,
 				60EB53CF265EAA8000C38D45 /* CustomAnnotation.swift in Sources */,
 				60982F02265BF6DE002DD001 /* PlacesListTableViewController.swift in Sources */,
+				60EB53D3265ED36600C38D45 /* MapMessageType.swift in Sources */,
 				60982EED265BE9A4002DD001 /* AppDelegate.swift in Sources */,
 				60982F0A265C187D002DD001 /* PlaceFinderViewController.swift in Sources */,
 				60982F15265C3246002DD001 /* Place.swift in Sources */,
