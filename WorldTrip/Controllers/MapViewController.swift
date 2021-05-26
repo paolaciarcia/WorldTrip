@@ -63,6 +63,7 @@ class MapViewController: UIViewController {
         userLocationButton.layer.cornerRadius = 5
         userLocationButton.layer.borderWidth = 1
         userLocationButton.layer.borderColor = UIColor(named: "main")?.cgColor
+        userLocationButton.tintColor = UIColor(named: "main")
     }
 
     @IBAction func plotRoute(_ sender: UIButton) {
