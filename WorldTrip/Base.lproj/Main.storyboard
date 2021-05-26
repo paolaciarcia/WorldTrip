@@ -162,6 +162,7 @@
                         <outlet property="mapView" destination="3lF-gA-GhP" id="vUB-7k-KRP"/>
                         <outlet property="placeName" destination="5TR-CH-yy9" id="C2p-v8-GwK"/>
                         <outlet property="searchBar" destination="w5c-vo-G5Z" id="eX5-Es-YSf"/>
+                        <outlet property="viewInfo" destination="1xf-zc-WjD" id="ggQ-fU-ylS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NNc-dk-6yl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
