@@ -25,6 +25,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.isHidden = true
@@ -42,7 +43,6 @@ class MapViewController: UIViewController {
         }
         
         configureLocationButton()
-        
         showPlaces()
         requestUserLocationAuth()
     }

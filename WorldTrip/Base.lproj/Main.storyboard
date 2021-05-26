@@ -77,17 +77,20 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hfi-8M-AUy">
                                 <rect key="frame" x="10" y="150" width="394" height="702"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" placeholder="O que você deseja buscar?" translatesAutoresizingMaskIntoConstraints="NO" id="w5c-vo-G5Z">
+                                    <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="O que você deseja buscar?" translatesAutoresizingMaskIntoConstraints="NO" id="w5c-vo-G5Z">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="gBz-Ny-AGD"/>
                                         </constraints>
-                                        <color key="barTintColor" red="1" green="1" blue="1" alpha="0.90029869080000002" colorSpace="custom" customColorSpace="displayP3"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
-                                            <string>Title</string>
                                         </scopeButtonTitles>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="searchField.textColor">
+                                                <color key="value" systemColor="labelColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="nhi-Iv-gyU" id="4Ad-IU-sXa"/>
                                         </connections>
@@ -198,7 +201,6 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: São Paulo" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="IYn-WN-8P6">
                                                 <rect key="frame" x="0.0" y="0.0" width="264" height="36"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="location"/>
                                             </textField>
@@ -318,6 +320,9 @@
         <namedColor name="main">
             <color red="0.082000002264976501" green="0.71100002527236938" blue="0.88999998569488525" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

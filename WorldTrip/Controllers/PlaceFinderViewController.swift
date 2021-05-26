@@ -23,6 +23,7 @@ class PlaceFinderViewController: UIViewController {
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var viewLoading: UIView!
     
+    
     var place: Place!
     weak var delegate: PlaceFinderDelegate?
     
