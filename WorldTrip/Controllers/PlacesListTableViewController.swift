@@ -89,6 +89,9 @@ class PlacesListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let place = places[indexPath.row]
         cell.textLabel?.text = place.name
+        cell.imageView?.layer.cornerRadius = 5
+        
+        tableView.rowHeight = 50
         
         return cell
     }
