@@ -26,7 +26,7 @@ struct Place: Codable {
             address += street
         }
         if let number = placemark.subThoroughfare {
-            address += "\(number)"
+            address += " \(number)"
         }
         if let subLocality = placemark.subLocality {
             address += ", \(subLocality)" //Bairro

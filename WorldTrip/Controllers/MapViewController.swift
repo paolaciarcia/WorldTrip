@@ -16,6 +16,8 @@ class MapViewController: UIViewController {
     var pointsOfInterest: [MKAnnotation] = []
     lazy var locationManager = CLLocationManager()
     var userLocationButton: MKUserTrackingButton!
+    var selectedAnnotation: CustomAnnotation?
+    
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
@@ -148,6 +150,12 @@ class MapViewController: UIViewController {
     func showPlaces() {
         mapView.showAnnotations(mapView.annotations, animated: true)
     }
+    
+    func showDescription() {
+        placeName.text = selectedAnnotation?.title
+        addressName.text = selectedAnnotation?.address
+        viewInfo.isHidden = false
+    }
 }
 
 //MARK: - MKMapViewDelegate
@@ -177,6 +185,11 @@ extension MapViewController: MKMapViewDelegate {
             
             return annotationView
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        selectedAnnotation = (view.annotation as! CustomAnnotation)
+        showDescription()
     }
 }
 
