@@ -188,6 +188,14 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        //mostra o mapa em 3D quando uma annotation é selecionada
+        let camera = MKMapCamera()
+        guard let annotationView = view.annotation else { return }
+        camera.centerCoordinate = annotationView.coordinate
+        camera.pitch = 80
+        camera.altitude = 100
+        mapView.setCamera(camera, animated: true)
+        
         selectedAnnotation = (view.annotation as! CustomAnnotation)
         showDescription()
     }
