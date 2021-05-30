@@ -11,21 +11,26 @@ import MapKit
 //2-salvar dados no device(esta delegando para essa classe a tarefa de salvar os locais)
 
 //MARK: - protocol PlaceFinderDelegate
+
 protocol PlaceFinderDelegate: class {
     func addPlace(_ place: Place)
 }
 
-//MARK: - PlaceFinderViewController
+
 class PlaceFinderViewController: UIViewController {
     
+    //MARK: - IBOutlets
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var viewLoading: UIView!
     
+    //MARK: - Properties
     
     var place: Place!
     weak var delegate: PlaceFinderDelegate?
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +39,35 @@ class PlaceFinderViewController: UIViewController {
         gesture.minimumPressDuration = 2.0
         mapView.addGestureRecognizer(gesture)
     }
+    
+    //MARK: - IBAction
+    @IBAction func chooseButton(_ sender: UIButton) {
+        searchTextField.resignFirstResponder()
+        
+        if searchTextField.text != nil {
+            let place = searchTextField.text!
+            load(show: true)
+            let cLGeocoder = CLGeocoder()
+            
+            cLGeocoder.geocodeAddressString(place, completionHandler: { (placemarks, error) in
+                self.load(show: false)
+                
+                if error == nil {
+                    if !self.savePlace(with: placemarks?.first) {
+                        self.showMessage(type: .error("Não foi encontrado nenhum local com esse nome"))
+                    }
+                } else {
+                    self.showMessage(type: .error("Erro desconhecido"))
+                }
+            })
+        } 
+    }
+    
+    @IBAction func closeButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: - Methods
     
     @objc func getLocation(_ gesture: UILongPressGestureRecognizer) {
         //configurar o estado do GestureRecognizer
@@ -57,35 +91,6 @@ class PlaceFinderViewController: UIViewController {
                 }
             })
         }
-    }
-    
-    
-
-    @IBAction func chooseButton(_ sender: UIButton) {
-        searchTextField.resignFirstResponder()
-        
-        if searchTextField.text != nil {
-            let place = searchTextField.text!
-            load(show: true)
-            let cLGeocoder = CLGeocoder()
-            
-            cLGeocoder.geocodeAddressString(place, completionHandler: { (placemarks, error) in
-                self.load(show: false)
-                
-                if error == nil {
-                    if !self.savePlace(with: placemarks?.first) {
-                        self.showMessage(type: .error("Não foi encontrado nenhum local com esse nome"))
-                    }
-                } else {
-                    self.showMessage(type: .error("Erro desconhecido"))
-                }
-            })
-        } 
-    }
-    
-    
-    @IBAction func closeButton(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
     }
     
     func load(show: Bool) {

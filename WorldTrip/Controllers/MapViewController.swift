@@ -10,14 +10,7 @@ import MapKit
 
 class MapViewController: UIViewController {
     
-    //todos os lugares a serem visualizados
-    var allPlaces: [Place]!
-    
-    var pointsOfInterest: [MKAnnotation] = []
-    lazy var locationManager = CLLocationManager()
-    var userLocationButton: MKUserTrackingButton!
-    var selectedAnnotation: CustomAnnotation?
-    
+    //MARK: - IBOutlets
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
@@ -26,7 +19,16 @@ class MapViewController: UIViewController {
     @IBOutlet weak var viewInfo: UIView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
+    //MARK: - Properties
     
+    //todos os lugares a serem visualizados
+    var allPlaces: [Place]!
+    var pointsOfInterest: [MKAnnotation] = []
+    lazy var locationManager = CLLocationManager()
+    var userLocationButton: MKUserTrackingButton!
+    var selectedAnnotation: CustomAnnotation?
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,35 +41,13 @@ class MapViewController: UIViewController {
         locationManager.delegate = self
         
         setupNavigationTitle()
-        
-        for place in allPlaces {
-            addPlacesToMap(place)
-        }
-        
+        addPlaces()
         configureLocationButton()
         showPlaces()
         requestUserLocationAuth()
     }
     
-    func setupNavigationTitle() {
-        if allPlaces.count == 1 {
-            title = allPlaces[0].name
-        } else {
-            title = "Meus lugares"
-        }
-    }
-    
-    func configureLocationButton() {
-        userLocationButton = MKUserTrackingButton(mapView: mapView)
-        userLocationButton.backgroundColor = .white
-        userLocationButton.frame.origin.x = 10
-        userLocationButton.frame.origin.y = 10
-        userLocationButton.layer.cornerRadius = 5
-        userLocationButton.layer.borderWidth = 1
-        userLocationButton.layer.borderColor = UIColor(named: "main")?.cgColor
-        userLocationButton.tintColor = UIColor(named: "main")
-    }
-
+    //MARK: - IBAction
     @IBAction func plotRoute(_ sender: UIButton) {
         //1-traçar rota
         //verifica não foi selecionado o authorizedWhenInUse
@@ -117,25 +97,32 @@ class MapViewController: UIViewController {
         searchBar.resignFirstResponder()
         searchBar.isHidden = !searchBar.isHidden
     }
-    //validar a ativação de localização
-    func requestUserLocationAuth() {
-        if CLLocationManager.locationServicesEnabled() {
-            
-            switch locationManager.authorizationStatus {
-            case .authorizedAlways, .authorizedWhenInUse:
-                //mostrar botão de localização no mapa
-                mapView.addSubview(userLocationButton)
-                break
-            case .denied:
-                showMessage(type: .authorizationWarning)
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-            case .restricted:
-                break
-            default:
-                return
-            }
+    
+    //MARK: - Methods
+    
+    func addPlaces() {
+        for place in allPlaces {
+            addPlacesToMap(place)
         }
+    }
+    
+    func setupNavigationTitle() {
+        if allPlaces.count == 1 {
+            title = allPlaces[0].name
+        } else {
+            title = "Meus lugares"
+        }
+    }
+    
+    func configureLocationButton() {
+        userLocationButton = MKUserTrackingButton(mapView: mapView)
+        userLocationButton.backgroundColor = .white
+        userLocationButton.frame.origin.x = 10
+        userLocationButton.frame.origin.y = 10
+        userLocationButton.layer.cornerRadius = 5
+        userLocationButton.layer.borderWidth = 1
+        userLocationButton.layer.borderColor = UIColor(named: "main")?.cgColor
+        userLocationButton.tintColor = UIColor(named: "main")
     }
     
     func showMessage(type: MapMessageType.Alerts) {
@@ -161,6 +148,26 @@ class MapViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
+    //validar a ativação de localização
+    func requestUserLocationAuth() {
+        if CLLocationManager.locationServicesEnabled() {
+            
+            switch locationManager.authorizationStatus {
+            case .authorizedAlways, .authorizedWhenInUse:
+                //mostrar botão de localização no mapa
+                mapView.addSubview(userLocationButton)
+                break
+            case .denied:
+                showMessage(type: .authorizationWarning)
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted:
+                break
+            default:
+                return
+            }
+        }
+    }
     
     //implementacao do MKAnnotation - "pinos" que são inseridos no mapa
     func addPlacesToMap(_ place: Place) {

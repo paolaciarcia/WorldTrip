@@ -9,10 +9,14 @@ import UIKit
 
 class PlacesListTableViewController: UITableViewController {
     
+    //MARK: - Properties
+    
     var places: [Place] = []
     let ud = UserDefaults.standard
     //label de inicio quando não há nenhum lugar salvo pelo usuário
     var startedLabel: UILabel!
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +24,8 @@ class PlacesListTableViewController: UITableViewController {
         setupLabel()
         //savePlaces()
     }
+    
+    //MARK: - Methods
     
     func setupLabel() {
         startedLabel = UILabel()
@@ -63,8 +69,12 @@ class PlacesListTableViewController: UITableViewController {
         ud.set(json, forKey: "places")
     }
     
+    //mostrar todos os lugares selecionados no mapa
+    @objc func showAll() {
+        performSegue(withIdentifier: "showPlace", sender: nil)
+    }
 
-    // MARK: - Table view data source
+    // MARK: - TableViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -96,15 +106,12 @@ class PlacesListTableViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - TableViewDelegate
+    
     //marcar no mapa o lugar que usuário selecionou
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let place = places[indexPath.row]
         performSegue(withIdentifier: "showPlace", sender: place)
-    }
-    
-    //mostrar todos os lugares selecionados no mapa
-    @objc func showAll() {
-        performSegue(withIdentifier: "showPlace", sender: nil)
     }
     
     //permite remover celulas existentes na tableView
@@ -116,6 +123,8 @@ class PlacesListTableViewController: UITableViewController {
         }
     }
 }
+
+//MARK: - PlaceFinderDelegate
 
 //4-salvar dados no device
 extension PlacesListTableViewController: PlaceFinderDelegate {
